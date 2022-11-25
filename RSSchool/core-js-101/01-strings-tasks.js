@@ -242,6 +242,45 @@ function getRectangleString(width, height) {
 }
 
 /**
+ * Encode specified string with ROT13 cipher
+ * See details:  https://en.wikipedia.org/wiki/ROT13
+ *
+ * @param {string} str
+ * @return {string}
+ *
+ * @example
+ *
+ *   'hello' => 'uryyb'
+ *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
+ *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
+ *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+ *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+ *
+ */
+
+function encodeToRot13(str) {
+  const alpha = "abcdefghijklmnopqrstuvwxyz";
+  const result = [];
+
+  str.split("").forEach((letter) => {
+    const index = alpha.indexOf(letter.toLowerCase());
+    const newIndex =
+      index + 13 > alpha.length - 1 ? index + 13 - alpha.length : index + 13;
+
+    if (index > -1) {
+      const newLetter = alpha[newIndex];
+      result.push(
+        letter === letter.toUpperCase() ? newLetter.toUpperCase() : newLetter
+      );
+    } else {
+      result.push(letter);
+    }
+  });
+
+  return result.join("");
+}
+
+/**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
  * @return {boolean}
