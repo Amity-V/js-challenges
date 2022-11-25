@@ -48,3 +48,18 @@ function getStringLength(value) {
 function getStringFromTemplate(firstName, lastName) {
   return `Hello, ${firstName} ${lastName}!`;
 }
+
+/**
+ * Extracts a name from template string 'Hello, First_Name Last_Name!'.
+ *
+ * @param {string} value
+ * @return {string}
+ *
+ * @example
+ *   'Hello, John Doe!' => 'John Doe'
+ *   'Hello, Chuck Norris!' => 'Chuck Norris'
+ */
+
+function extractNameFromTemplate(value) {
+  return value.slice(0, value.length - 1).split("Hello, ")[1];
+}
