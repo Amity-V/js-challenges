@@ -63,3 +63,18 @@ function getStringFromTemplate(firstName, lastName) {
 function extractNameFromTemplate(value) {
   return value.slice(0, value.length - 1).split("Hello, ")[1];
 }
+
+/**
+ * Returns a first char of the given string.
+ *
+ * @param {string} value
+ * @return {string}
+ *
+ * @example
+ *   'John Doe'  => 'J'
+ *   'cat'       => 'c'
+ */
+
+function getFirstChar(value) {
+  return value.slice(0, 1);
+}
