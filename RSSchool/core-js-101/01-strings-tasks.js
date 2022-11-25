@@ -240,3 +240,21 @@ function getRectangleString(width, height) {
   }
   return rect;
 }
+
+/**
+ * Returns true if the value is string; otherwise false.
+ * @param {string} value
+ * @return {boolean}
+ *
+ * @example
+ *   isString() => false
+ *   isString(null) => false
+ *   isString([]) => false
+ *   isString({}) => false
+ *   isString('test') => true
+ *   isString(new String('test')) => true
+ */
+
+function isString(value) {
+  return value ? typeof value[0] === "string" : false;
+}
