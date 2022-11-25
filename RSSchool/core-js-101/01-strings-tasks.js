@@ -132,3 +132,19 @@ function removeFirstOccurrences(str, value) {
   const index = str.indexOf(value);
   return str.slice(0, index) + str.slice(index + value.length);
 }
+
+/**
+ * Remove the first and last angle brackets from tag string
+ *
+ * @param {string} str
+ * @return {string}
+ *
+ * @example
+ *   '<div>' => 'div'
+ *   '<span>' => 'span'
+ *   '<a>' => 'a'
+ */
+
+function unbracketTag(str) {
+  return str.replace("<", "").replace(">", "");
+}
