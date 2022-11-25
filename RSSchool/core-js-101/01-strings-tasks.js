@@ -94,3 +94,23 @@ function getFirstChar(value) {
 function removeLeadingAndTrailingWhitespaces(value) {
   return value.trim();
 }
+
+/**
+ * Returns a string that repeated the specified number of times.
+ *
+ * @param {string} value
+ * @param {string} count
+ * @return {string}
+ *
+ * @example
+ *   'A', 5  => 'AAAAA'
+ *   'cat', 3 => 'catcatcat'
+ */
+
+function repeatString(value, count) {
+  let result = "";
+  for (let i = 0; i < count; i += 1) {
+    result += value;
+  }
+  return result;
+}
