@@ -183,3 +183,60 @@ function convertToUpperCase(str) {
 function extractEmails(str) {
   return str.split(";");
 }
+
+/**
+ * Returns the string representation of rectangle with specified width and height
+ * using pseudograhic chars
+ *
+ * @param {number} width
+ * @param {number} height
+ * @return {string}
+ *
+ * @example
+ *
+ *            '┌────┐\n'+
+ *  (6,4) =>  '│    │\n'+
+ *            '│    │\n'+
+ *            '└────┘\n'
+ *
+ *  (2,2) =>  '┌┐\n'+
+ *            '└┘\n'
+ *
+ *             '┌──────────┐\n'+
+ *  (12,3) =>  '│          │\n'+
+ *             '└──────────┘\n'
+ *
+ */
+
+function getRectangleString(width, height) {
+  let rect = "";
+  for (let row = 1; row <= height; row += 1) {
+    if (row === 1) {
+      rect += "┌";
+    } else if (row === height) {
+      rect += "└";
+    } else {
+      rect += "│";
+    }
+    for (let col = 2; col <= width; col += 1) {
+      if (row === 1) {
+        if (col === width) {
+          rect += "┐\n";
+        } else {
+          rect += "─";
+        }
+      } else if (row === height) {
+        if (col === width) {
+          rect += "┘\n";
+        } else {
+          rect += "─";
+        }
+      } else if (col === width) {
+        rect += "│\n";
+      } else {
+        rect += " ";
+      }
+    }
+  }
+  return rect;
+}
