@@ -29,3 +29,20 @@ function getRectangleArea(width, height) {
 function getCircleCircumference(radius) {
   return radius * (Math.PI * 2);
 }
+
+/**
+ * Returns an average of two given numbers.
+ *
+ * @param {number} value1
+ * @param {number} value2
+ * @return {number}
+ *
+ * @example:
+ *   5, 5  => 5
+ *  10, 0  => 5
+ *  -3, 3  => 0
+ */
+
+function getAverage(value1, value2) {
+  return value1 / 2 + value2 / 2;
+}
