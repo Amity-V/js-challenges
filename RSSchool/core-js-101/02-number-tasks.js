@@ -168,3 +168,30 @@ function parseNumberFromString(value) {
 function roundToPowerOfTen(num, pow) {
   return Math.round(num / 10 ** pow) * 10 ** pow;
 }
+
+/**
+ * Returns true is the number is prime; otherwise false.
+ * See: https://en.wikipedia.org/wiki/Primality_test
+ *
+ * @param {number} n
+ * @return {bool}
+ *
+ * @example:
+ *   4 => false
+ *   5 => true
+ *   6 => false
+ *   7 => true
+ *   11 => true
+ *   12 => false
+ *   16 => false
+ *   17 => true
+ */
+
+function isPrime(n) {
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return n > 1;
+}
