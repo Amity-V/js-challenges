@@ -46,3 +46,25 @@ function getCircleCircumference(radius) {
 function getAverage(value1, value2) {
   return value1 / 2 + value2 / 2;
 }
+
+/**
+ * Returns a distance between two points by cartesian coordinates.
+ *
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ *
+ * @return {number}
+ *
+ * @example:
+ *   (0,0) (0,1)    => 1
+ *   (0,0) (1,0)    => 1
+ *   (-5,0) (10,-10) => 18.027756377319946
+ */
+
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const a = Math.abs(x1) + Math.abs(x2);
+  const b = Math.abs(y1) + Math.abs(y2);
+  return Math.sqrt(a * a + b * b);
+}
