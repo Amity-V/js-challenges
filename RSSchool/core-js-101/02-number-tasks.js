@@ -112,3 +112,21 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
 
   return Math.acos(dot / (lenA * lenB));
 }
+
+/**
+ * Returns a last digit of a integer number.
+ *
+ * @param {number} value
+ * @return {number}
+ *
+ * @example:
+ *   100     => 0
+ *    37     => 7
+ *     5     => 5
+ *     0     => 0
+ */
+
+function getLastDigit(value) {
+  const stringifiedNumber = String(value);
+  return Number(stringifiedNumber[stringifiedNumber.length - 1]);
+}
