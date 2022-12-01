@@ -328,3 +328,44 @@ function get3TopItems(arr) {
 function getPositivesCount(arr) {
   return arr.filter((el) => typeof el === "number" && el > 0).length;
 }
+
+/**
+ * Sorts digit names
+ *
+ * @param {array} arr
+ * @return {array}
+ *
+ * @example
+ *   [] => []
+ *   [ 'nine','one' ]                 => [ 'one', 'nine' ]
+ *   [ 'one','two','three' ]          => [ 'one','two', 'three' ]
+ *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
+ *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
+ */
+
+function sortDigitNamesByNumericOrder(arr) {
+  const numbers = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+  return arr.sort((a, b) => {
+    const indexA = numbers.indexOf(a);
+    const indexB = numbers.indexOf(b);
+
+    if (indexA > indexB) {
+      return 1;
+    }
+    if (indexA < indexB) {
+      return -1;
+    }
+    return 0;
+  });
+}
