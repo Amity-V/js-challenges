@@ -310,3 +310,21 @@ function propagateItemsByPositionIndex(arr) {
 function get3TopItems(arr) {
   return arr.sort((a, b) => b - a).splice(0, 3);
 }
+
+/**
+ * Returns the number of positive numbers from specified array
+ *
+ * @param {array} arr
+ * @return {number}
+ *
+ * @example
+ *   [ ]          => 0
+ *   [ -1, 0, 1 ] => 1
+ *   [ 1, 2, 3]   => 3
+ *   [ null, 1, 'elephant' ] => 1
+ *   [ 1, '2' ] => 1
+ */
+
+function getPositivesCount(arr) {
+  return arr.filter((el) => typeof el === "number" && el > 0).length;
+}
