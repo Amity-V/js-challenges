@@ -501,3 +501,35 @@ function sortCitiesArray(arr) {
     return 0;
   });
 }
+
+/**
+ * Creates an identity matrix of the specified size
+ *
+ * @param {number} n
+ * @return {array}
+ *
+ * @example
+ *     1  => [[1]]
+ *
+ *     2 => [[1,0],
+ *           [0,1]]
+ *
+ *          [[1,0,0,0,0],
+ *           [0,1,0,0,0],
+ *     5 =>  [0,0,1,0,0],
+ *           [0,0,0,1,0],
+ *           [0,0,0,0,1]]
+ */
+
+function getIdentityMatrix(n) {
+  return Array(n)
+    .fill(Array(n).fill(0))
+    .map((row, rowIndex) =>
+      row.map((col, colIndex) => {
+        if (rowIndex === colIndex) {
+          return 1;
+        }
+        return col;
+      })
+    );
+}
