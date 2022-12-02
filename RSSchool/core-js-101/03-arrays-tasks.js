@@ -386,3 +386,29 @@ function sortDigitNamesByNumericOrder(arr) {
 function getItemsSum(arr) {
   return arr.reduce((prev, curr) => prev + curr, 0);
 }
+
+/**
+ * Returns the number of all falsy value in the specified array
+ *
+ * @param {array} arr
+ * @return {number}
+ *
+ * @example
+ *  [] => 0
+ *  [ 1, '', 3 ] => 1
+ *  [ -1, 'false', null, 0 ] => 2
+ *  [ null, undefined, NaN, false, 0, '' ]  => 6
+ */
+
+function getFalsyValuesCount(arr) {
+  let falsyCount = 0;
+
+  arr.map((el) => {
+    if (!el) {
+      falsyCount += 1;
+    }
+    return el;
+  });
+
+  return falsyCount;
+}
