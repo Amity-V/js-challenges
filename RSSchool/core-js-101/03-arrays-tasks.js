@@ -369,3 +369,20 @@ function sortDigitNamesByNumericOrder(arr) {
     return 0;
   });
 }
+
+/**
+ * Returns the sum of all items in the specified array of numbers
+ *
+ * @param {array} arr
+ * @return {number}
+ *
+ * @example
+ *   [] => 0
+ *   [ 1, 2, 3 ]           => 6
+ *   [ -1, 1, -1, 1 ]      => 0
+ *   [ 1, 10, 100, 1000 ]  => 1111
+ */
+
+function getItemsSum(arr) {
+  return arr.reduce((prev, curr) => prev + curr, 0);
+}
