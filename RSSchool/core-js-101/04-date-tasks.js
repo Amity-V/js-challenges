@@ -50,3 +50,35 @@ function isLeapYear(date) {
   const year = date.getFullYear();
   return new Date(year, 1, 29).getMonth() !== 2;
 }
+
+/**
+ * Returns the string representation of the timespan between two dates.
+ * The format of output string is "HH:mm:ss.sss"
+ *
+ * @param {date} startDate
+ * @param {date} endDate
+ * @return {string}
+ *
+ * @example:
+ *    Date(2000,1,1,10,0,0),  Date(2000,1,1,11,0,0)   => "01:00:00.000"
+ *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,30,0)       => "00:30:00.000"
+ *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,20)        => "00:00:20.000"
+ *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
+ *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
+ */
+
+function timeSpanToString(startDate, endDate) {
+  const diff = endDate.getTime() - startDate.getTime();
+
+  const hours = Math.floor(diff / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  const ms = diff % 1000;
+
+  const HH = `${hours < 10 ? "0" : ""}${hours}`;
+  const mm = `${minutes < 10 ? "0" : ""}${minutes}`;
+  const ss = `${seconds < 10 ? "0" : ""}${seconds}`;
+  const sss = `${ms < 10 ? "00" : ""}${ms > 9 && ms < 100 ? "0" : ""}${ms}`;
+
+  return `${HH}:${mm}:${ss}.${sss}`;
+}
