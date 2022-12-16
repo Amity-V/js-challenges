@@ -25,3 +25,22 @@ function getFizzBuzz(num) {
   if (!(num % 3)) return "Fizz";
   return num;
 }
+
+/**
+ * Returns the factorial of the specified integer n.
+ *
+ * @param {number} n
+ * @return {number}
+ *
+ * @example:
+ *   1  => 1
+ *   5  => 120
+ *   10 => 3628800
+ */
+
+function getFactorial(n) {
+  if (n === 1) {
+    return 1;
+  }
+  return n * getFactorial(n - 1);
+}
