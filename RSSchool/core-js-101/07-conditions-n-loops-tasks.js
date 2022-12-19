@@ -65,3 +65,25 @@ function getSumBetweenNumbers(n1, n2) {
 
   return n1 + getSumBetweenNumbers(n1 + 1, n2);
 }
+
+/**
+ * Returns the first non repeated char in the specified strings otherwise returns null.
+ *
+ * @param {string} str
+ * @return {string}
+ *
+ * @example:
+ *   'The quick brown fox jumps over the lazy dog' => 'T'
+ *   'abracadabra'  => 'c'
+ *   'entente' => null
+ */
+
+function findFirstSingleChar(str) {
+  const chars = str.split("");
+  const result = chars.find((char) => {
+    const reps = chars.filter((c) => c === char);
+    return reps.length === 1;
+  });
+
+  return result;
+}
