@@ -282,3 +282,100 @@ function getCommonDirectoryPath(paths) {
 
   return commonPath;
 }
+
+/**
+ * Returns the evaluation of the specified tic-tac-toe position.
+ * See the details: https://en.wikipedia.org/wiki/Tic-tac-toe
+ *
+ * Position is provides as 3x3 array with the following values: 'X','0', undefined
+ * Function should return who is winner in the current position according to the game rules.
+ * The result can be: 'X','0',undefined
+ *
+ * @param {array} position
+ * @return {string}
+ *
+ * @example
+ *
+ *   [[ 'X',   ,'0' ],
+ *    [    ,'X','0' ],       =>  'X'
+ *    [    ,   ,'X' ]]
+ *
+ *   [[ '0','0','0' ],
+ *    [    ,'X',    ],       =>  '0'
+ *    [ 'X',   ,'X' ]]
+ *
+ *   [[ '0','X','0' ],
+ *    [    ,'X',    ],       =>  undefined
+ *    [ 'X','0','X' ]]
+ *
+ *   [[    ,   ,    ],
+ *    [    ,   ,    ],       =>  undefined
+ *    [    ,   ,    ]]
+ *
+ */
+
+function evaluateTicTacToePosition(position) {
+  let horizontal;
+  let vertical;
+  let diagonal;
+
+  for (let i = 0; i < 3; i += 1) {
+    let line;
+
+    for (let j = 0; j < 3; j += 1) {
+      if (!vertical && i === 0 && position[i][j]) {
+        let row = position[i][j];
+
+        for (let k = 0; k < 3; k += 1) {
+          if (!position[k][j] || position[k][j] !== row) {
+            row = undefined;
+            break;
+          }
+        }
+
+        vertical = row;
+      }
+
+      if (!diagonal && i === 0 && j === 0 && position[0][0]) {
+        let diagonalUD = position[0][0];
+
+        for (let k = 1; k < 3; k += 1) {
+          if (position[k][k] !== diagonalUD) {
+            diagonalUD = undefined;
+            break;
+          }
+        }
+
+        diagonal = diagonalUD;
+      }
+
+      if (!diagonal && i === 2 && j === 0 && position[2][0]) {
+        let diagonalDU = position[2][0];
+
+        for (let k = 1; k < 3; k += 1) {
+          if (position[i - k][k] !== diagonalDU) {
+            diagonalDU = undefined;
+            break;
+          }
+        }
+
+        diagonal = diagonalDU;
+      }
+
+      if (!horizontal) {
+        if (j === 0 && position[i][j]) {
+          line = position[i][j];
+        } else if (position[i][j] !== line) {
+          line = undefined;
+          break;
+        }
+      }
+    }
+
+    if (!horizontal) {
+      horizontal = line;
+    }
+  }
+
+  return horizontal || vertical || diagonal;
+}
