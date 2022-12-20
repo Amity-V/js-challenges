@@ -196,3 +196,53 @@ function getDigitalRoot(num) {
           .reduce((prev, current) => Number(prev) + Number(current));
   return result;
 }
+
+/**
+ * Returns true if the specified string has the balanced brackets and false otherwise.
+ * Balanced means that is, whether it consists entirely of pairs of opening/closing brackets
+ * (in that order), none of which mis-nest.
+ * Brackets include [],(),{},<>
+ *
+ * @param {string} str
+ * @return {boolean}
+ *
+ * @example:
+ *   '' => true
+ *   '[]'  => true
+ *   '{}'  => true
+ *   '()   => true
+ *   '[[]' => false
+ *   ']['  => false
+ *   '[[][][[]]]' => true
+ *   '[[][]][' => false
+ *   '{)' = false
+ *   '{[(<{[]}>)]}' = true
+ */
+
+function isBracketsBalanced(str) {
+  const brackets = {
+    "{": "}",
+    "[": "]",
+    "(": ")",
+    "<": ">",
+  };
+
+  const chars = str.split("");
+
+  while (chars.length > 0) {
+    if (!(chars[0] in brackets)) {
+      return false;
+    }
+
+    const cBracketIndex = chars.findIndex((char) => !(char in brackets));
+    const prevBracket = chars[cBracketIndex - 1];
+
+    if (cBracketIndex > 0 && brackets[prevBracket] === chars[cBracketIndex]) {
+      chars.splice(cBracketIndex - 1, 2);
+    } else {
+      return false;
+    }
+  }
+
+  return true;
+}
