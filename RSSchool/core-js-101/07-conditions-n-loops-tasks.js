@@ -421,3 +421,44 @@ function doRectanglesOverlap(rect1, rect2) {
     rect2.left > rect1.left + rect1.width
   );
 }
+
+/**
+ * Validates the CCN (credit card number) and return true if CCN is valid
+ * and false otherwise.
+ *
+ * See algorithm here : https://en.wikipedia.org/wiki/Luhn_algorithm
+ *
+ * @param {number} cnn
+ * @return {boolean}
+ *
+ * @example:
+ *   79927398713      => true
+ *   4012888888881881 => true
+ *   5123456789012346 => true
+ *   378282246310005  => true
+ *   371449635398431  => true
+ *
+ *   4571234567890111 => false
+ *   5436468789016589 => false
+ *   4916123456789012 => false
+ */
+
+function isCreditCardNumber(ccn) {
+  const splittedCCN = String(ccn).split("");
+  let result = 0;
+
+  splittedCCN.forEach((d, i) => {
+    const n = Number(d);
+    let digit;
+
+    if (i % 2) {
+      digit = splittedCCN.length % 2 ? n * 2 : n;
+    } else {
+      digit = splittedCCN.length % 2 ? n : n * 2;
+    }
+
+    result += digit > 9 ? 1 + (digit % 10) : digit;
+  });
+
+  return (10 - (result % 10)) % 10 === 0;
+}
