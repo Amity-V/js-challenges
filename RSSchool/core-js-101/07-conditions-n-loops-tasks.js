@@ -487,3 +487,41 @@ function isCreditCardNumber(ccn) {
 function toNaryString(num, n) {
   return num.toString(n);
 }
+
+/**
+ * Returns the product of two specified matrixes.
+ * See details: https://en.wikipedia.org/wiki/Matrix_multiplication
+ *
+ * @param {array} m1
+ * @param {array} m2
+ * @return {array}
+ *
+ * @example:
+ *   [[ 1, 0, 0 ],       [[ 1, 2, 3 ],           [[ 1, 2, 3 ],
+ *    [ 0, 1, 0 ],   X    [ 4, 5, 6 ],     =>     [ 4, 5, 6 ],
+ *    [ 0, 0, 1 ]]        [ 7, 8, 9 ]]            [ 7, 8, 9 ]]
+ *
+ *                        [[ 4 ],
+ *   [[ 1, 2, 3]]    X     [ 5 ],          =>     [[ 32 ]]
+ *                         [ 6 ]]
+ *
+ */
+
+function getMatrixProduct(m1, m2) {
+  const result = [];
+
+  m1.forEach((line, i) => {
+    result.push([]);
+    for (let j = 0; j < line.length; j += 1) {
+      for (let k = 0; k < m2[i].length; k += 1) {
+        if (result[i][k]) {
+          result[i][k] += line[j] * m2[j][k];
+        } else {
+          result[i][k] = line[j] * m2[j][k];
+        }
+      }
+    }
+  });
+
+  return result;
+}
