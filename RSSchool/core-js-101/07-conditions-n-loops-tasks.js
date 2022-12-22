@@ -525,3 +525,38 @@ function getMatrixProduct(m1, m2) {
 
   return result;
 }
+
+/**
+ * Returns true, if point lies inside the circle, otherwise false.
+ * Circle is an object of
+ *  {
+ *     center: {
+ *       x: 5,
+ *       y: 5
+ *     },
+ *     radius: 20
+ *  }
+ *
+ * Point is object of
+ *  {
+ *     x: 5,
+ *     y: 5
+ *  }
+ *
+ * @param {object} circle
+ * @param {object} point
+ * @return {bool}
+ *
+ * @example:
+ *   { center: { x:0, y:0 }, radius:10 },  { x:0, y:0 }     => true
+ *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
+ *
+ */
+
+function isInsideCircle(circle, point) {
+  const distance = Math.sqrt(
+    (point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2
+  );
+
+  return distance < circle.radius;
+}
