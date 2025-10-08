@@ -14,7 +14,25 @@
 // You should log the codingFact to the console a third time.
 // You should log "It was fun sharing these facts with you. Goodbye! - (botName) from (botLocation)." to the console as a farewell statement from the bot.
 
+console.log("Hello! I'm your coding fun fact guide!");
 
+const botName = "Alice";
+const botLocation = "Wonderland";
+const favoriteLanguage = "JavaScript";
+
+console.log(`My name is ${botName} and I live on ${botLocation}.`);
+console.log(`My favorite programming language is ${favoriteLanguage}.`);
+
+let codingFact = `${favoriteLanguage} was originally created in just 10 days!`;
+console.log(codingFact);
+
+codingFact = `${favoriteLanguage} can be used for both frontend and backend development.`;
+console.log(codingFact);
+
+codingFact = `Despite its name, ${favoriteLanguage} has nothing to do with Java.`;
+console.log(codingFact);
+
+console.log(`It was fun sharing these facts with you. Goodbye! - ${botName} from ${botLocation}.`);
 
 // Tests
 
