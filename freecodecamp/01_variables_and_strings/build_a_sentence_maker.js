@@ -20,7 +20,27 @@
 // Create another story using the same template and assign it to the secondStory variable.
 // You should output your second story to the console using the message "Second story: [secondStory]".
 
+let adjective = "brave";
+let noun = "dragon";
+let verb = "angry";
+let place = "volcano";
+let adjective2 = "gigantic";
+let noun2 = "marshmallows";
 
+const firstStory = `Once upon a time, there was a(n) ${adjective} ${noun} who loved to eat ${noun2}. The ${noun} lived in a ${place} and had ${adjective2} nostrils that blew fire when it was ${verb}.`;
+
+console.log(`First story: ${firstStory}`);
+
+adjective = "sneaky";
+noun = "goblin";
+verb = "excited";
+place = "swamp";
+adjective2 = "tiny";
+noun2 = "spiders";
+
+const secondStory = `Once upon a time, there was a(n) ${adjective} ${noun} who loved to eat ${noun2}. The ${noun} lived in a ${place} and had ${adjective2} nostrils that blew fire when it was ${verb}.`;
+
+console.log(`Second story: ${secondStory}`);
 
 // Tests
 
