@@ -10,7 +10,7 @@
 // If the argument received is a boolean primitive, the function should return true.
 // If the argument is any other value, the function should return false.
 
-
+const booWho = value => typeof value === "boolean";
 
 // Tests
 
