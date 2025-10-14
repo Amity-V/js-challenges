@@ -15,7 +15,21 @@
 // maskEmail("info@test.dev") should return "i**o@test.dev".
 // maskEmail("user@domain.org") should return "u**r@domain.org".
 
+const maskEmail = (email) => {
+    const atIndex = email.indexOf("@");
+    const username = email.slice(0, atIndex);
+    const domain = email.slice(atIndex);
 
+    const firstChar = username[0];
+    const lastChar = username[username.length - 1];
+    const maskedMiddle = "*".repeat(username.length - 2);
+
+    return firstChar + maskedMiddle + lastChar + domain;
+}
+
+const email = "info@test.dev";
+
+console.log(maskEmail(email));
 
 // Tests
 
