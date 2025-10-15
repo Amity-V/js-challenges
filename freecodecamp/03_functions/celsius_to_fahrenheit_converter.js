@@ -10,7 +10,7 @@
 // convertCtoF should take a single numeric argument, which is the temperature in Celsius.
 // convertCtoF should return a number.
 
-
+const convertCtoF = (celsius) => celsius * (9 / 5) + 32;
 
 // Tests
 
