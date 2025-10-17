@@ -19,7 +19,19 @@
 // The cc function should return a string with current count and the string Hold if the count is less than or equal to 0.
 // In the function output, the current count and the player's decision (Bet or Hold) should be separated by a space. For example, -3 Hold.
 
+let count = 0;
 
+const cc = (card) => {
+    if ([2, 3, 4, 5, 6].includes(card)) {
+        count += 1;
+    } else if ([10, "J", "Q", "K", "A"].includes(card)) {
+        count -= 1;
+    }
+
+    const action = count > 0 ? "Bet" : "Hold";
+
+    return `${count} ${action}`;
+}
 
 // Tests
 
