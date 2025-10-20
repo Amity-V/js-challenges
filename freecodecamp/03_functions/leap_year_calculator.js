@@ -15,7 +15,16 @@
 // 6. You should call the isLeapYear function with year as the argument and assign the result to a variable named result.
 // 7. You should output the result variable to the console using console.log().
 
+const year = 2000;
 
+const isLeapYear = (year) =>
+    (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)
+        ? `${year} is a leap year.`
+        : `${year} is not a leap year.`;
+
+const result = isLeapYear(year);
+
+console.log(result);
 
 // Tests
 
