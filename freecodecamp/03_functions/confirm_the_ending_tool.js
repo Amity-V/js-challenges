@@ -8,7 +8,7 @@
 // 2. The function should return true if the first string ends with the second string, and false otherwise.
 // 3. You should not use the .endsWith() method; instead, use one of the JavaScript substring methods to achieve this.
 
-
+const confirmEnding = (str, target) => str.slice(-target.length) === target;
 
 // Tests
 
