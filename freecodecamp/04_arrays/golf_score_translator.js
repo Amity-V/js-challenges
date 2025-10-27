@@ -17,7 +17,36 @@
 // 9. golfScore should return "Double Bogey" if strokes is equal to par plus 2.
 // 10. golfScore should return "Go Home!" if strokes is greater than or equal to par plus 3.
 
+const names = [
+    "Hole-in-one!",
+    "Eagle",
+    "Birdie",
+    "Par",
+    "Bogey",
+    "Double Bogey",
+    "Go Home!"
+];
 
+const golfScore = (par, strokes) => {
+    switch (true) {
+        case strokes === 1:
+            return names[0]; // "Hole-in-one!"
+        case strokes <= par - 2:
+            return names[1]; // "Eagle"
+        case strokes === par - 1:
+            return names[2]; // "Birdie"
+        case strokes === par:
+            return names[3]; // "Par"
+        case strokes === par + 1:
+            return names[4]; // "Bogey"
+        case strokes === par + 2:
+            return names[5]; // "Double Bogey"
+        case strokes >= par + 3:
+            return names[6]; // "Go Home!"
+        default:
+            return "Invalid input";
+    }
+}
 
 // Tests
 
