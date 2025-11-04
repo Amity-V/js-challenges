@@ -9,7 +9,18 @@
 // 1. You should create a function named findLongestWordLength that takes a string as an argument.
 // 2. The function should return the length of the longest word in the string.
 
+const findLongestWordLength = (str) => {
+    let maxLength = 0;
+    const words = str.split(' ');
 
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].length > maxLength) {
+            maxLength = words[i].length;
+        }
+    }
+
+    return maxLength;
+}
 
 // Tests
 
