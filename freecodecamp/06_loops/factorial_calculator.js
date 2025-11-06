@@ -11,7 +11,23 @@
 // 5. You should store the final output in the format Factorial of [num] is [factorial] and assign it to the variable resultMsg.
 // 6. You should output the value of resultMsg to the console.
 
+const num = 13;
 
+const factorialCalculator = (number) => {
+    let result = 1;
+
+    for (let i = 1; i <= number; i++) {
+        result *= i;
+    }
+
+    return result;
+}
+
+const factorial = factorialCalculator(num);
+
+const resultMsg = `Factorial of ${num} is ${factorial}`;
+
+console.log(resultMsg);
 
 // Tests
 
