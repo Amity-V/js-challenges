@@ -8,7 +8,18 @@
 //     - mutation(["hello", "hey"]) should return false because the string hello does not contain a y.
 //     - mutation(["Alien", "line"]), should return true because all of the letters in line are present in Alien.
 
+const mutation = (arr) => {
+    const word1 = arr[0].toLowerCase();
+    const word2 = arr[1].toLowerCase();
 
+    for (const char of word2) {
+        if (!word1.includes(char)) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 // Tests
 
