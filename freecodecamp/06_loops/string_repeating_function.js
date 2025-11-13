@@ -8,7 +8,16 @@
 // The function should return the string repeated the specified number of times.
 // If the number is less than or equal to zero, the function should return an empty string.
 
+const repeatStringNumTimes = (str, num) => {
+    if (num <= 0) return "";
 
+    let repeatedStr = "";
+    for (let i = 0; i < num; i += 1) {
+        repeatedStr += str;
+    }
+
+    return repeatedStr;
+}
 
 // Tests
 
