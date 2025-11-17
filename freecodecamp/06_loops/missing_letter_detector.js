@@ -7,7 +7,18 @@
 // The function should find the missing letter in the passed letter range and return it.
 // If all letters are present in the range, the function should return undefined.
 
+const fearNotLetter = (str) => {
+    for (let i = 0; i < str.length - 1; i += 1) {
+        const current = str.charCodeAt(i);
+        const next = str.charCodeAt(i + 1);
 
+        if (next - current > 1) {
+            return String.fromCharCode(current + 1);
+        }
+    }
+
+    return undefined;
+}
 
 // Tests
 
