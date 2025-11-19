@@ -15,7 +15,7 @@
 // 2. The function should return the first item in the array that passes a truth test. This means that, calling the passed in function func, given an element x, the truth test is passed if func(x) is true.
 // 3. If no element passes the test, the function should return undefined.
 
-
+const findElement = (arr, func) => arr.find(func);
 
 // Tests
 
