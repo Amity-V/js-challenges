@@ -8,7 +8,13 @@
 // 2. Copy each element of the first array into the second array, in order, beginning at the given index, and return the resulting array.
 // 3. The input arrays should remain the same after the function runs.
 
+const frankenSplice = (arr1, arr2, index) => {
+    const arr2Copy = arr2.slice();
 
+    arr2Copy.splice(index, 0, ...arr1);
+
+    return arr2Copy;
+};
 
 // Tests
 
