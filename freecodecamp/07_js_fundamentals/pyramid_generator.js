@@ -18,7 +18,23 @@
 //  ooooo
 // ooooooo
 
+const pyramid = (char, rows, inverted) => {
+    let result = "\n";
 
+    const start = inverted ? rows : 1;
+    const end = inverted ? 1 : rows;
+    const step = inverted ? -1 : 1;
+    const maxWidth = 2 * rows - 1;
+
+    for (let row = start; inverted ? row >= end : row <= end; row += step) {
+        const width = 2 * row - 1;
+        const spaces = (maxWidth - width) / 2;
+
+        result += " ".repeat(spaces) + char.repeat(width) + "\n";
+    }
+
+    return result;
+}
 
 // Tests
 
