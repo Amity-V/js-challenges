@@ -20,7 +20,30 @@
 // - "Class average: average-goes-here. Your grade: grade-goes-here. You failed the course.", if the student failed the course.
 // Replace average-goes-here with the average of total scores and grade-goes-here with the student's grade. Use getAverage to get the average score and getGrade to get the student's grade.
 
+const getAverage = (scores) => {
+    let total = scores.reduce((sum, n) => sum + n, 0);
 
+    return total / scores.length;
+}
+
+const getGrade = (score) => {
+    if (score === 100) return "A+";
+    if (score >= 90) return "A";
+    if (score >= 80) return "B";
+    if (score >= 70) return "C";
+    if (score >= 60) return "D";
+    return "F";
+}
+
+const hasPassingGrade = (score) => getGrade(score) !== "F";
+
+const studentMsg = (scores, studentScore) => {
+    const average = getAverage(scores);
+    const grade = getGrade(studentScore);
+    const passed = hasPassingGrade(studentScore);
+
+    return `Class average: ${average}. Your grade: ${grade}. You ${passed ? 'passed' : 'failed'} the course.`;
+}
 
 // Tests
 
