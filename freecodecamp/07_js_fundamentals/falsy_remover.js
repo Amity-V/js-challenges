@@ -12,7 +12,7 @@
 
 // Hint: Try converting each value to a Boolean.
 
-
+const bouncer = (arr) => arr.filter(item => !!item);
 
 // Tests
 
