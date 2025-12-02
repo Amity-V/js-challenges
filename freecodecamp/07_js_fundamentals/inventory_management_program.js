@@ -16,7 +16,23 @@
 
 // Note: To prevent conflicts, keep only the logging mentioned in the user stories when running tests.
 
+const inventory = [];
 
+const findProductIndex = (productName) =>
+    inventory.findIndex(product =>
+        product.name.toLowerCase() === productName.toLowerCase());
+
+const addProduct = (product) => {
+    const index = findProductIndex(product.name);
+
+    if (index === -1) {
+        inventory.push(product);
+        console.log(`${product.name} added to inventory`);
+    } else {
+        inventory[index].quantity += product.quantity;
+        console.log(`${product.name} ${product.quantity} updated`);
+    }
+}
 
 // Tests
 
