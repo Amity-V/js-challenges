@@ -23,16 +23,17 @@ const findProductIndex = (productName) =>
         product.name.toLowerCase() === productName.toLowerCase());
 
 const addProduct = (product) => {
-    const index = findProductIndex(product.name);
+    const name = product.name.toLowerCase();
+    const index = findProductIndex(name);
 
     if (index === -1) {
-        inventory.push(product);
-        console.log(`${product.name} added to inventory`);
+        inventory.push({ name, quantity: product.quantity });
+        console.log(`${name} added to inventory`);
     } else {
         inventory[index].quantity += product.quantity;
-        console.log(`${product.name} ${product.quantity} updated`);
+        console.log(`${name} quantity updated`);
     }
-}
+};
 
 // Tests
 
