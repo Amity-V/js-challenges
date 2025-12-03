@@ -35,6 +35,28 @@ const addProduct = (product) => {
     }
 };
 
+const removeProduct = (productName, quantity) => {
+    const name = productName.toLowerCase();
+    const index = findProductIndex(name);
+
+    if (index === -1) {
+        console.log(`${name} not found`);
+    } else {
+        const product = inventory[index];
+
+        if (product.quantity < quantity) {
+            console.log(`Not enough ${name} available, remaining pieces: ${product.quantity}`);
+        } else {
+            product.quantity -= quantity;
+            console.log(`Remaining ${name} pieces: ${product.quantity}`);
+
+            if (product.quantity === 0) {
+                inventory.splice(index, 1);
+            }
+        }
+    }
+};
+
 // Tests
 
 // 1. You should declare an empty array named inventory.
