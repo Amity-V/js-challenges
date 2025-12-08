@@ -9,7 +9,22 @@
 // You should define a variable called password and assign it the result of calling the generatePassword function with a numeric argument that represents the desired password length.
 // You should have a console.log that logs a single string made by concatenating the message Generated password: and the password variable separated by a space.
 
+const generatePassword = (length) => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+    let result = "";
 
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        result += chars[randomIndex];
+    }
+
+    return result;
+}
+
+
+const password = generatePassword(8);
+
+console.log(`Generated password: ${password}`);
 
 // Tests
 
