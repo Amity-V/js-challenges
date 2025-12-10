@@ -7,7 +7,17 @@
 // 1. You should have a function named sumAll that accepts an array of two numbers.
 // 2. sumAll([n, m]) should return the sum of n and m plus the sum of all the numbers between them. The lowest number will not always come first. For example, sumAll([4,1]) should return 10 because sum of all the numbers between 1 and 4 (both inclusive) is 10.
 
+const sumAll = (arr) => {
+    let sum = 0;
+    const start = Math.min(arr[0], arr[1]);
+    const end = Math.max(arr[0], arr[1]);
 
+    for (let i = start; i <= end; i += 1) {
+        sum += i;
+    }
+
+    return sum;
+}
 
 // 1. You should have a function named sumAll.
 // 2. sumAll([1, 4]) should return a number.
