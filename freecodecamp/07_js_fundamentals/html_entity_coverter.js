@@ -13,7 +13,17 @@
 // " should be converted to &quot;.
 // ' should be converted to &apos;.
 
+const convertHTML = (str) => {
+    const entities = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;'
+    };
 
+    return str.split('').map(char => entities[char] || char).join('');
+}
 
 // Tests
 
