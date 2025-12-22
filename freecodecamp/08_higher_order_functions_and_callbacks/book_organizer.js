@@ -11,7 +11,42 @@
 // 7. You should filter out books written after a certain year such as 1950 from the books array and save the filtered array in a new array named filteredBooks.
 // 8. You should sort the books in the filteredBooks array according to their releaseYear in ascending order. You learned in a prior lesson that the sort() method will sort the array in place. This means the filteredBooks array will be mutated.
 
+const books = [
+    {
+        title: "The Green Mile",
+        authorName: "Stephen King",
+        releaseYear: 1996
+    },
+    {
+        title: "11/22/63",
+        authorName: "Stephen King",
+        releaseYear: 2011
+    },
+    {
+        title: "Misery",
+        authorName: "Stephen King",
+        releaseYear: 1987
+    },
+    {
+        title: "It",
+        authorName: "Stephen King",
+        releaseYear: 1986
+    }
+];
 
+const sortByYear = (book1, book2) => {
+    if (book1.releaseYear < book2.releaseYear) {
+        return -1;
+    } else if (book1.releaseYear > book2.releaseYear) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+const filteredBooks = books.filter(book => book.releaseYear >= 1990);
+
+filteredBooks.sort(sortByYear);
 
 // Tests
 
