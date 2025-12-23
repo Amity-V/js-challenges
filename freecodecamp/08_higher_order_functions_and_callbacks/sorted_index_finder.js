@@ -17,7 +17,13 @@
 // getIndexToIns([1, 2, 3, 4], 1.5) should return 1 because 1.5 is greater than 1 (index 0) and less than 2 (index 1).
 // getIndexToIns([20, 3, 5], 19) should return 2 because after sorting to [3, 5, 20], 19 is less than 20 (index 2) and greater than 5 (index 1).
 
+const getIndexToIns = (arr, num) => {
+    const sorted = [...arr].sort((a, b) => a - b);
 
+    const index = sorted.findIndex(value => value >= num);
+
+    return index === -1 ? sorted.length : index;
+}
 
 // Tests
 
