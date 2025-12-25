@@ -16,7 +16,12 @@
 // 4. Your function should return the symmetric difference of the two arrays.
 // 5. Your function should return an empty array if there is no symmetric difference.
 
+const diffArray = (arr1, arr2) => {
+    const filteredArr1 = arr1.filter(item => !arr2.includes(item));
+    const filteredArr2 = arr2.filter(item => !arr1.includes(item));
 
+    return [...filteredArr1, ...filteredArr2];
+}
 
 // Tests
 
