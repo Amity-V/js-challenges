@@ -8,7 +8,8 @@
 // The destroyer function should return a new array excluding all elements from the first argument that match any of the subsequent arguments.
 // The function must accept an indeterminate number of arguments.
 
-
+const destroyer = (arr, ...valuesToRemove) =>
+    arr.filter(element => !valuesToRemove.includes(element));
 
 // Tests
 
