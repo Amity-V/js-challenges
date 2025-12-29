@@ -18,7 +18,13 @@
 // );
 // // should return [{ first: "Tybalt", last: "Capulet" }]
 
+const whatIsInAName = (collection, source) => {
+    const sourceKeys = Object.keys(source);
 
+    return collection.filter(obj =>
+        sourceKeys.every(key => obj[key] === source[key])
+    );
+}
 
 // Tests
 
