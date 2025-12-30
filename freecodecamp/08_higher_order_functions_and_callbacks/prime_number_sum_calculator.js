@@ -8,7 +8,24 @@
 // 2. The sumPrimes function should return the sum of all prime numbers less than or equal to the provided number.
 // 3. If the input number is less than 2, the function should return 0.
 
+function sumPrimes(num) {
+    let sum = 0;
 
+    for (let i = 2; i <= num; i++) {
+        let prime = true;
+
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+            if (i % j === 0) {
+                prime = false;
+                break;
+            }
+        }
+
+        if (prime) sum += i;
+    }
+
+    return sum;
+}
 
 // Tests
 
