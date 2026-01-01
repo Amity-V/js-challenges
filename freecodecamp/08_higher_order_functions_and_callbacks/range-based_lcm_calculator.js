@@ -8,7 +8,31 @@
 // 2. The smallestCommons function should return the smallest common multiple that is evenly divisible by both numbers and all sequential numbers in the range between them.
 // 3. The function should handle input where the two numbers are not in numerical order.
 
+const smallestCommons = (arr) => {
+    const [min, max] = arr.sort((a, b) => a - b);
 
+    // Greatest Common Divisor (Euclidean algorithm)
+    const gcd = (a, b) => {
+        while (b !== 0) {
+            [a, b] = [b, a % b];
+        }
+
+        return a;
+    }
+
+    // Least Common Multiple
+    const lcm = (a, b) => {
+        return (a * b) / gcd(a, b);
+    }
+
+    let result = min;
+
+    for (let i = min + 1; i <= max; i++) {
+        result = lcm(result, i);
+    }
+
+    return result;
+}
 
 // Tests
 
