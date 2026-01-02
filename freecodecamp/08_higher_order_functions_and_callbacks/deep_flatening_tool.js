@@ -19,7 +19,23 @@
 // 4. Your solution should not use the Array.prototype.flat() or Array.prototype.flatMap() methods.
 // 5. Global variables should not be used.
 
+const steamrollArray = (arr) => {
+    const result = [];
 
+    const flatten = (item) => {
+        if (!Array.isArray(item)) {
+            result.push(item);
+        } else {
+            for (let element of item) {
+                flatten(element);
+            }
+        }
+    }
+
+    flatten(arr);
+
+    return result;
+}
 
 // Tests
 
