@@ -20,7 +20,4 @@
  * @returns {string[]} An array with the unique filtered gifts
  */
 
-function filterGifts(gifts) {
-    // Code here
-    return []
-}
+const filterGifts = gifts => gifts.filter(gift => !gift.includes('#'));
