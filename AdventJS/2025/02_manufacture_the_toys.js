@@ -43,7 +43,16 @@
  * @returns {string[]} Array of manufactured gifts
  */
 
-function manufactureGifts(giftsToProduce) {
-  // Code here
-  return [];
-}
+const manufactureGifts = (giftsToProduce) => {
+  const result = [];
+
+  giftsToProduce.forEach(({ toy, quantity }) => {
+    if (typeof quantity === "number" && quantity > 0) {
+      for (let i = 0; i < quantity; i++) {
+        result.push(toy);
+      }
+    }
+  });
+
+  return result;
+};
