@@ -51,7 +51,18 @@
  * @returns {string} The gift drawn
  */
 
-function drawGift(size, symbol) {
-  // Code here
-  return "";
-}
+const drawGift = (size, symbol) => {
+  if (size < 2) return "";
+
+  const rows = [];
+
+  for (let i = 0; i < size; i++) {
+    if (i === 0 || i === size - 1) {
+      rows.push(symbol.repeat(size));
+    } else {
+      rows.push(`${symbol}${" ".repeat(size - 2)}${symbol}`);
+    }
+  }
+
+  return rows.join("\n");
+};
