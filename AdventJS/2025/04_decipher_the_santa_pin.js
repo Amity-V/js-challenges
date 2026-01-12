@@ -21,3 +21,35 @@
 // decodeSantaPin('[9+][0-][4][<]') // "0944"
 
 // decodeSantaPin('[1+][2-]') // null (only 2 digits)
+
+/**
+ * @param {string} code - The code to decipher
+ * @returns {string} The deciphered PIN
+ */
+
+const decodeSantaPin = (code) => {
+  const blocks = code.match(/\[.*?\]/g);
+  const digits = [];
+
+  for (const block of blocks) {
+    const content = block.slice(1, -1);
+
+    if (content === "<") {
+      digits.push(digits[digits.length - 1]);
+    } else {
+      let value = parseInt(content[0]);
+
+      for (let i = 1; i < content.length; i++) {
+        if (content[i] === "+") {
+          value = (value + 1) % 10;
+        } else if (content[i] === "-") {
+          value = (value - 1 + 10) % 10;
+        }
+      }
+
+      digits.push(value);
+    }
+  }
+
+  return digits.length < 4 ? null : digits.join("");
+};
