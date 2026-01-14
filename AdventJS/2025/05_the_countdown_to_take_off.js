@@ -36,7 +36,12 @@
  * @returns {number} The time in seconds until take off
  */
 
-function timeUntilTakeOff(fromTime, takeOffTime) {
-  // All your code here
-  return 0;
-}
+const timeUntilTakeOff = (fromTime, takeOffTime) => {
+  const NPToUTC = (time) =>
+    time.replace(/\*/g, "-").replace(/[@|]/g, ":").replace(/ NP$/, "");
+
+  const fromTimeUTC = new Date(NPToUTC(fromTime));
+  const takeOffTimeUTC = new Date(NPToUTC(takeOffTime));
+
+  return Math.floor((takeOffTimeUTC - fromTimeUTC) / 1000);
+};
