@@ -50,7 +50,20 @@
  * @returns {string[]} Colors of matched pairs
  */
 
-function matchGloves(gloves) {
-  // Code here
-  return [];
-}
+const matchGloves = (gloves) => {
+  const match = [];
+  const counts = {};
+
+  for (const { hand, color } of gloves) {
+    counts[color] = counts[color] || { L: 0, R: 0 };
+    counts[color][hand] += 1;
+
+    if (counts[color].L > 0 && counts[color].R > 0) {
+      counts[color].L -= 1;
+      counts[color].R -= 1;
+      match.push(color);
+    }
+  }
+
+  return match;
+};
