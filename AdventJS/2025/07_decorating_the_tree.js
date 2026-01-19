@@ -37,7 +37,24 @@
  *  @returns {string} The decorated tree
  */
 
-function drawTree(height, ornament, frequency) {
-  // Code here
-  return "";
-}
+const drawTree = (height, ornament, frequency) => {
+  let tree = "";
+  let position = 1;
+
+  for (let i = 1; i <= height; i++) {
+    const spaces = " ".repeat(height - i);
+    const width = i * 2 - 1;
+    let row = "";
+
+    for (let j = 0; j < width; j++) {
+      row += position % frequency === 0 ? ornament : "*";
+      position += 1;
+    }
+
+    tree += spaces + row + "\n";
+  }
+
+  tree += " ".repeat(height - 1) + "#";
+
+  return tree;
+};
