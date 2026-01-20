@@ -27,7 +27,19 @@
  * @returns {string} The first unique letter in the toy
  */
 
-function findUniqueToy(toy) {
-  // Code here
+const findUniqueToy = (toy) => {
+  const counts = {};
+
+  for (const char of toy) {
+    const lower = char.toLowerCase();
+    counts[lower] = (counts[lower] || 0) + 1;
+  }
+
+  for (const char of toy) {
+    if (counts[char.toLowerCase()] === 1) {
+      return char;
+    }
+  }
+
   return "";
-}
+};
