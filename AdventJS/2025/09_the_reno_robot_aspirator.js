@@ -50,7 +50,50 @@
  * @returns {'fail' | 'crash' | 'success'}
  */
 
-function moveReno(board, moves) {
-  // Code here
+const moveReno = (board, moves) => {
+  const moveMap = {
+    U: { c: 0, r: -1 },
+    D: { c: 0, r: 1 },
+    L: { c: -1, r: 0 },
+    R: { c: 1, r: 0 },
+  };
+
+  const boardArr = board
+    .trim()
+    .split("\n")
+    .map((row) => row.split(""));
+
+  const maxRow = boardArr.length - 1;
+  const maxCol = boardArr[0].length - 1;
+
+  let reno = { r: 0, c: 0 };
+
+  for (let r = 0; r < boardArr.length; r += 1) {
+    const c = boardArr[r].indexOf("@");
+
+    if (c !== -1) {
+      reno = { r, c };
+      break;
+    }
+  }
+
+  for (const move of moves) {
+    const row = reno.r + moveMap[move].r;
+    const col = reno.c + moveMap[move].c;
+
+    if (
+      row < 0 ||
+      col < 0 ||
+      row > maxRow ||
+      col > maxCol ||
+      boardArr[row][col] === "#"
+    )
+      return "crash";
+    if (boardArr[row][col] === "*") return "success";
+
+    reno.r = row;
+    reno.c = col;
+  }
+
   return "fail";
-}
+};
