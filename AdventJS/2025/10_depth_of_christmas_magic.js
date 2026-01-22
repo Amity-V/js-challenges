@@ -23,7 +23,21 @@
  * @returns {number} The maximum depth of the magic
  */
 
-function maxDepth(s) {
-  // Code here
-  return 0;
-}
+const maxDepth = (s) => {
+  let max = 0;
+  let current = 0;
+
+  for (const bracket of s) {
+    if (bracket === "[") {
+      current += 1;
+    } else {
+      current -= 1;
+    }
+
+    if (current < 0) return -1;
+
+    if (current > max) max = current;
+  }
+
+  return current === 0 ? max : -1;
+};
