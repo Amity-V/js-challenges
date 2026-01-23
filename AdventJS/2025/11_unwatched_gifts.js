@@ -46,7 +46,24 @@
  * @returns {number} The count of unwatched gifts
  */
 
-function findUnsafeGifts(warehouse) {
-  // Code here
-  return 0;
-}
+const findUnsafeGifts = (warehouse) => {
+  let unsafeGift = 0;
+
+  for (let i = 0; i < warehouse.length; i += 1) {
+    for (let j = 0; j < warehouse[i].length; j += 1) {
+      if (warehouse[i][j] === "*") {
+        const hasCamera =
+          warehouse[i - 1]?.[j] === "#" ||
+          warehouse[i + 1]?.[j] === "#" ||
+          warehouse[i]?.[j - 1] === "#" ||
+          warehouse[i]?.[j + 1] === "#";
+
+        if (!hasCamera) {
+          unsafeGift += 1;
+        }
+      }
+    }
+  }
+
+  return unsafeGift;
+};
