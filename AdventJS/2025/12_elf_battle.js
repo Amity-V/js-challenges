@@ -63,7 +63,25 @@
  * @return {number} - The result of the battle
  */
 
-function elfBattle(elf1, elf2) {
-  // Code here
-  return 0;
-}
+const elfBattle = (elf1, elf2) => {
+  let hp1 = 3;
+  let hp2 = 3;
+
+  const calculateDamage = (attacker, defender) => {
+    if (attacker === "F") return 2;
+    if (attacker === "A" && defender !== "B") return 1;
+    return 0;
+  };
+
+  for (let i = 0; i < elf1.length; i += 1) {
+    const move1 = elf1[i];
+    const move2 = elf2[i];
+
+    hp1 -= calculateDamage(move2, move1);
+    hp2 -= calculateDamage(move1, move2);
+
+    if (hp1 <= 0 || hp2 <= 0) break;
+  }
+
+  return hp1 > hp2 ? 1 : hp2 > hp1 ? 2 : 0;
+};
