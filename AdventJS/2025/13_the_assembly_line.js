@@ -55,7 +55,31 @@
  * @returns {'completed'|'broken'|'loop'} Result of the gift journey
  */
 
-function runFactory(factory) {
-  // Code here
-  return "completed";
-}
+const runFactory = (factory) => {
+  const moveMap = {
+    ">": { c: 1, r: 0 },
+    "<": { c: -1, r: 0 },
+    "^": { c: 0, r: -1 },
+    "v": { c: 0, r: 1 },
+  };
+  const max = factory[0].length * factory.length;
+  const maxRow = factory.length - 1;
+  const maxCol = factory[0].length - 1;
+
+  let position = { c: 0, r: 0 };
+
+  for (let i = 0; i < max; i += 1) {
+    const current = factory[position.r][position.c];
+
+    if (current === ".") return "completed";
+
+    const c = position.c + moveMap[current].c;
+    const r = position.r + moveMap[current].r;
+
+    if (r < 0 || c < 0 || r > maxRow || c > maxCol) return "broken";
+
+    position = { c, r };
+  }
+
+  return "loop";
+};
