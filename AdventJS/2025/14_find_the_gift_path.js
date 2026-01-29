@@ -45,7 +45,30 @@
  * @returns {number[]} The path to the gift
  */
 
-function findGiftPath(workshop, gift) {
-  // Code here
-  return [];
-}
+const findGiftPath = (workshop, gift) => {
+  const path = [];
+
+  const search = (obj) => {
+    for (const [key, value] of Object.entries(obj)) {
+      path.push(key);
+
+      if (value === gift) {
+        return true;
+      }
+
+      if (typeof value === "object") {
+        if (search(value)) {
+          return true;
+        }
+      }
+
+      path.pop();
+    }
+
+    return false;
+  };
+
+  search(workshop);
+
+  return path;
+};
