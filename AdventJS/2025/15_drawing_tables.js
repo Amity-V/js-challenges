@@ -51,7 +51,39 @@
  * @returns {string}
  */
 
-function drawTable(data, sortBy) {
-  // Code here
-  return "";
-}
+const drawTable = (data, sortBy) => {
+  const keys = Object.keys(data[0]);
+
+  const sorted = [...data].sort((a, b) =>
+    a[sortBy] < b[sortBy] ? -1 : a[sortBy] > b[sortBy] ? 1 : 0,
+  );
+
+  const widths = keys.map((key) =>
+    Math.max(...sorted.map((row) => String(row[key]).length)),
+  );
+
+  const separator = "+" + widths.map((w) => "-".repeat(w + 2)).join("+") + "+";
+
+  const header =
+    "|" +
+    keys
+      .map((_, i) => ` ${String.fromCharCode(65 + i)}${" ".repeat(widths[i])}`)
+      .join("|") +
+    "|";
+
+  const body = sorted
+    .map(
+      (row) =>
+        "|" +
+        keys
+          .map((key, i) => {
+            const value = String(row[key]);
+            return ` ${value}${" ".repeat(widths[i] - value.length)} `;
+          })
+          .join("|") +
+        "|",
+    )
+    .join("\n");
+
+  return `${separator}\n${header}\n${separator}\n${body}\n${separator}`;
+};
