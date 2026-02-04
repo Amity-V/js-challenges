@@ -37,7 +37,21 @@
  * Return null if no sleigh can carry all the gifts
  */
 
-function packGifts(gifts, maxWeight) {
-  // Code here
-  return 0;
-}
+const packGifts = (gifts, maxWeight) => {
+  if (gifts.length === 0) return 0;
+  if (Math.max(...gifts) > maxWeight) return null;
+
+  let sleighs = 1;
+  let currentWeight = 0;
+
+  for (const gift of gifts) {
+    if (currentWeight + gift > maxWeight) {
+      sleighs += 1;
+      currentWeight = gift;
+    } else {
+      currentWeight += gift;
+    }
+  }
+
+  return sleighs;
+};
