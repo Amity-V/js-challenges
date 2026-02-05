@@ -37,7 +37,43 @@
  * @returns {boolean}
  */
 
-function hasFourLights(board) {
-  // Code here
+const hasFourLights = (board) => {
+  const rows = board.length;
+  const cols = board[0].length;
+
+  for (let r = 0; r < rows; r += 1) {
+    let count = 1;
+    let prevColor = board[r][0];
+
+    for (let c = 1; c < cols; c += 1) {
+      const current = board[r][c];
+
+      if (current === "." || current !== prevColor) {
+        count = 1;
+        prevColor = current;
+      } else {
+        count += 1;
+        if (count >= 4) return true;
+      }
+    }
+  }
+
+  for (let c = 0; c < cols; c += 1) {
+    let count = 1;
+    let prevColor = board[0][c];
+
+    for (let r = 1; r < rows; r += 1) {
+      const current = board[r][c];
+
+      if (current === "." || current !== prevColor) {
+        count = 1;
+        prevColor = current;
+      } else {
+        count += 1;
+        if (count >= 4) return true;
+      }
+    }
+  }
+
   return false;
-}
+};
