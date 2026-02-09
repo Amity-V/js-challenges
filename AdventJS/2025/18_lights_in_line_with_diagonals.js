@@ -46,7 +46,46 @@
  * @returns {boolean}
  */
 
-function hasFourInARow(board) {
-  // Code here
+const hasFourInARow = (board) => {
+  const rows = board.length;
+  const cols = board[0].length;
+
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [1, 1],
+    [1, -1],
+  ];
+
+  const checkDirection = (board, r, c, dr, dc) => {
+    const color = board[r][c];
+    if (color === ".") return false;
+
+    for (let i = 1; i < 4; i += 1) {
+      const nr = r + dr * i;
+      const nc = c + dc * i;
+
+      if (
+        nr < 0 ||
+        nr >= rows ||
+        nc < 0 ||
+        nc >= cols ||
+        board[nr][nc] !== color
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  for (let r = 0; r < rows; r += 1) {
+    for (let c = 0; c < cols; c += 1) {
+      for (const [dr, dc] of directions) {
+        if (checkDirection(board, r, c, dr, dc)) return true;
+      }
+    }
+  }
+
   return false;
-}
+};
