@@ -35,7 +35,15 @@
  * @returns {string[]} The reconstructed route
  */
 
-function revealSantaRoute(routes) {
-  // Code here
-  return [];
-}
+const revealSantaRoute = (routes) => {
+  const map = new Map(routes);
+  const route = [routes[0][0]];
+  let current = routes[0][0];
+
+  while (map.has(current)) {
+    current = map.get(current);
+    route.push(current);
+  }
+
+  return route;
+};
