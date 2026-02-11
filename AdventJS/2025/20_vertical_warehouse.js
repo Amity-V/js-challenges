@@ -75,7 +75,20 @@
  * @returns {string[][]}
  */
 
-function dropGifts(warehouse, drops) {
-  // Code here
-  return [];
-}
+const dropGifts = (warehouse, drops) => {
+  const warehouseCopy = warehouse.map((row) => [...row]);
+
+  const emptySpaceIndex = (index) => {
+    for (let i = warehouseCopy.length - 1; i >= 0; i--) {
+      if (warehouseCopy[i][index] === ".") return i;
+    }
+    return -1;
+  };
+
+  for (const drop of drops) {
+    const index = emptySpaceIndex(drop);
+    if (index !== -1) warehouseCopy[index][drop] = "#";
+  }
+
+  return warehouseCopy;
+};
