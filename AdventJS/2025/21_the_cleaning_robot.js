@@ -72,7 +72,38 @@
  * @returns {string[][]}
  */
 
-function clearGifts(warehouse, drops) {
-  // Code here
-  return [];
-}
+const clearGifts = (warehouse, drops) => {
+  const warehouseCopy = warehouse.map((row) => [...row]);
+  const cols = warehouseCopy[0].length;
+
+  const findLowestEmpty = (col) => {
+    for (let i = warehouseCopy.length - 1; i >= 0; i -= 1) {
+      if (warehouseCopy[i][col] === ".") return i;
+    }
+
+    return -1;
+  };
+
+  const clearFullRows = () => {
+    let i = warehouseCopy.length - 1;
+
+    while (i >= 0) {
+      if (warehouseCopy[i].every((cell) => cell === "#")) {
+        warehouseCopy.splice(i, 1);
+        warehouseCopy.unshift(Array(cols).fill("."));
+      } else {
+        i -= 1;
+      }
+    }
+  };
+
+  for (const col of drops) {
+    const row = findLowestEmpty(col);
+    if (row !== -1) {
+      warehouseCopy[row][col] = "#";
+      clearFullRows();
+    }
+  }
+
+  return warehouseCopy;
+};
