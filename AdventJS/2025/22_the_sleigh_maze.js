@@ -59,7 +59,29 @@
  * @returns {boolean}
  */
 
-function canEscape(maze) {
-  // Code here
-  return false;
-}
+const canEscape = (maze) => {
+  const rows = maze.length;
+  const cols = maze[0].length;
+  const startR = maze.findIndex((row) => row.includes("S"));
+  const startC = maze[startR].indexOf("S");
+  const visited = new Set();
+
+  const isValid = (r, c) =>
+    r >= 0 &&
+    r < rows &&
+    c >= 0 &&
+    c < cols &&
+    maze[r][c] !== "#" &&
+    !visited.has(`${r},${c}`);
+
+  const dfs = (r, c) => {
+    if (!isValid(r, c)) return false;
+    if (maze[r][c] === "E") return true;
+
+    visited.add(`${r},${c}`);
+
+    return dfs(r - 1, c) || dfs(r + 1, c) || dfs(r, c - 1) || dfs(r, c + 1);
+  };
+
+  return dfs(startR, startC);
+};
