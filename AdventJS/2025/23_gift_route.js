@@ -60,6 +60,59 @@
  */
 
 function minStepsToDeliver(map) {
-  // Code here
-  return 0;
+  const rows = map.length;
+  const cols = map[0].length;
+
+  const startR = map.findIndex((row) => row.includes("S"));
+  const startC = map[startR].indexOf("S");
+
+  const steps = [];
+  let totalHouses = 0;
+
+  for (const row of map) {
+    for (const cell of row) {
+      if (cell === "G") totalHouses += 1;
+    }
+  }
+
+  if (totalHouses === 0) return 0;
+
+  const queue = [[startR, startC, 0]];
+  const visited = new Set([`${startR},${startC}`]);
+  const directions = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ];
+
+  while (queue.length > 0) {
+    const [r, c, dist] = queue.shift();
+
+    if (map[r][c] === "G") {
+      steps.push(dist);
+    }
+
+    for (const [dr, dc] of directions) {
+      const newR = r + dr;
+      const newC = c + dc;
+      const key = `${newR},${newC}`;
+
+      if (
+        newR >= 0 &&
+        newR < rows &&
+        newC >= 0 &&
+        newC < cols &&
+        map[newR][newC] !== "#" &&
+        !visited.has(key)
+      ) {
+        visited.add(key);
+        queue.push([newR, newC, dist + 1]);
+      }
+    }
+  }
+
+  if (steps.length !== totalHouses) return -1;
+
+  return steps.reduce((sum, dist) => sum + dist, 0);
 }
