@@ -70,7 +70,17 @@
  * @returns {[boolean, string]}
  */
 
-function isTreesSynchronized(tree1, tree2) {
-  // Code here
-  return [];
-}
+const isTreesSynchronized = (tree1, tree2) => {
+  const checkMirror = (node1, node2) => {
+    if (!node1 && !node2) return true;
+    if (!node1 || !node2) return false;
+    if (node1.value !== node2.value) return false;
+
+    return (
+      checkMirror(node1.left, node2.right) &&
+      checkMirror(node1.right, node2.left)
+    );
+  };
+
+  return [checkMirror(tree1, tree2), tree1.value];
+};
