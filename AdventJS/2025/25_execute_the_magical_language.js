@@ -27,7 +27,44 @@
  * @returns {number} - The final value after executing the program
  */
 
-function execute(code) {
-  // Code here
-  return 0;
-}
+const execute = (code) => {
+  const brackets = new Map();
+
+  let loopStart = -1;
+  let condStart = -1;
+
+  for (let i = 0; i < code.length; i++) {
+    const c = code[i];
+
+    if (c === "[") loopStart = i;
+    else if (c === "]") brackets.set(loopStart, i).set(i, loopStart);
+    else if (c === "{") condStart = i;
+    else if (c === "}") brackets.set(condStart, i).set(i, condStart);
+  }
+
+  let value = 0;
+
+  for (let i = 0; i < code.length; i++) {
+    const c = code[i];
+
+    switch (c) {
+      case "+":
+        value++;
+        break;
+      case "-":
+        value--;
+        break;
+
+      case "[":
+      case "{":
+        if (value === 0) i = brackets.get(i);
+        break;
+
+      case "]":
+        if (value !== 0) i = brackets.get(i);
+        break;
+    }
+  }
+
+  return value;
+};
