@@ -40,7 +40,10 @@
  * @returns {string} The framed names
  */
 
-function createFrame(names) {
-  // Code here
-  return "";
-}
+const createFrame = (names) => {
+  const maxLen = Math.max(...names.map((n) => n.length));
+  const border = "*".repeat(maxLen + 4);
+  const rows = names.map((n) => `* ${n.padEnd(maxLen)} *`).join("\n");
+
+  return `${border}\n${rows}\n${border}`;
+};
