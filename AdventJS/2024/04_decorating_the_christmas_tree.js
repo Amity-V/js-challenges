@@ -53,6 +53,17 @@
  */
 
 function createXmasTree(height, ornament) {
-  /* Code here */
-  return "";
+  const maxWidth = height * 2 - 1;
+  const padding = (maxWidth - 1) / 2;
+
+  let tree = "";
+  const trunk = "_".repeat(padding) + "#" + "_".repeat(padding);
+
+  for (let i = 1; i <= height; i += 1) {
+    const currentWidth = i * 2 - 1;
+    const spaces = "_".repeat((maxWidth - currentWidth) / 2);
+    tree += `${spaces}${ornament.repeat(currentWidth)}${spaces}\n`;
+  }
+
+  return tree + trunk + "\n" + trunk;
 }
