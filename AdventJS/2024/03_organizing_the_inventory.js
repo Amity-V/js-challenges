@@ -55,7 +55,16 @@
  * @returns {object} The organized inventory
  */
 
-function organizeInventory(inventory) {
-  // Code here
-  return {};
-}
+const organizeInventory = (inventory) => {
+  const result = {};
+
+  for (const { name, quantity, category } of inventory) {
+    if (!result[category]) {
+      result[category] = {};
+    }
+
+    result[category][name] = (result[category][name] || 0) + quantity;
+  }
+
+  return result;
+};
