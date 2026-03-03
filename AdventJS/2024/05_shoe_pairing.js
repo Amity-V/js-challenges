@@ -43,6 +43,20 @@
  */
 
 function organizeShoes(shoes) {
-  // Code here
-  return [];
+  const pile = {};
+  const pairs = [];
+
+  for (const { type, size } of shoes) {
+    if (!pile[size]) pile[size] = { I: 0, R: 0 };
+
+    pile[size][type] += 1;
+
+    if (pile[size].I && pile[size].R) {
+      pile[size].I -= 1;
+      pile[size].R -= 1;
+      pairs.push(size);
+    }
+  }
+
+  return pairs;
 }
