@@ -41,6 +41,11 @@
  */
 
 function inBox(box) {
-  // Code here
-  return true;
+  for (let r = 1; r < box.length - 1; r += 1) {
+    for (let c = 1; c < box[0].length - 1; c += 1) {
+      if (box[r][c] === "*") return true;
+    }
+  }
+
+  return false;
 }
