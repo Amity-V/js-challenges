@@ -29,6 +29,18 @@
  */
 
 function fixPackages(packages) {
-  // Code here
-  return "";
+  let result = packages;
+
+  while (result.includes("(")) {
+    const start = result.lastIndexOf("(");
+    const end = result.indexOf(")", start);
+
+    const before = result.slice(0, start);
+    const inside = result.slice(start + 1, end);
+    const after = result.slice(end + 1);
+
+    result = before + inside.split("").reverse().join("") + after;
+  }
+
+  return result;
 }
