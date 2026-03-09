@@ -48,6 +48,20 @@
  */
 
 function drawRace(indices, length) {
-  // Code here
-  return "";
+  const trackLines = [];
+
+  for (let i = indices.length - 1; i >= 0; i -= 1) {
+    const laneNumber = i + 1;
+    const lane = Array(length).fill("~");
+
+    if (indices[i] !== 0) {
+      lane.splice(indices[i], 1, "r");
+    }
+
+    const spacing = " ".repeat(indices.length - laneNumber);
+    const trackLine = `${spacing}${lane.join("")} /${laneNumber}`;
+    trackLines.push(trackLine);
+  }
+
+  return trackLines.reverse().join("\n");
 }
