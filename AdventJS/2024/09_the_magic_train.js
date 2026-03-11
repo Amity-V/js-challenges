@@ -54,6 +54,39 @@
  */
 
 function moveTrain(board, mov) {
-  // Code here
+  const moveMap = {
+    U: { c: 0, r: -1 },
+    D: { c: 0, r: 1 },
+    L: { c: -1, r: 0 },
+    R: { c: 1, r: 0 },
+  };
+
+  const maxRow = board.length - 1;
+  const maxCol = board[0].length - 1;
+
+  let head = {};
+
+  for (let r = 0; r < board.length; r++) {
+    const c = board[r].indexOf("@");
+    if (c !== -1) {
+      head = { r, c };
+      break;
+    }
+  }
+
+  const row = head.r + moveMap[mov].r;
+  const col = head.c + moveMap[mov].c;
+
+  if (
+    row < 0 ||
+    col < 0 ||
+    row > maxRow ||
+    col > maxCol ||
+    board[row][col] === "o"
+  )
+    return "crash";
+
+  if (board[row][col] === "*") return "eat";
+
   return "none";
 }
