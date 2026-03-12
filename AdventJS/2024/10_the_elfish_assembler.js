@@ -40,6 +40,30 @@
  */
 
 function compile(instructions) {
-  // Code here
-  return 0;
+  const registers = {};
+
+  for (let i = 0; i < instructions.length; i++) {
+    const [action, x, y] = instructions[i].split(" ");
+
+    if (action === "MOV") {
+      const value = isNaN(x) ? (registers[x] ?? 0) : Number(x);
+      registers[y] = value;
+    }
+
+    if (action === "INC") {
+      registers[x] = (registers[x] ?? 0) + 1;
+    }
+
+    if (action === "DEC") {
+      registers[x] = (registers[x] ?? 0) - 1;
+    }
+
+    if (action === "JMP") {
+      if ((registers[x] ?? 0) === 0) {
+        i = Number(y) - 1;
+      }
+    }
+  }
+
+  return registers.A;
 }
