@@ -27,6 +27,8 @@
  */
 
 function decodeFilename(filename) {
-  // Code here
-  return "";
+  const start = filename.indexOf("_") + 1;
+  const end = filename.lastIndexOf(".");
+
+  return filename.slice(start, end);
 }
