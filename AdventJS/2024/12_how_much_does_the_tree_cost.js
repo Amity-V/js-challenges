@@ -26,6 +26,28 @@
  */
 
 function calculatePrice(ornaments) {
-  // Code here
-  return 0;
+  const values = {
+    "*": 1,
+    "o": 5,
+    "^": 10,
+    "#": 50,
+    "@": 100,
+  };
+
+  let total = 0;
+
+  for (let i = 0; i < ornaments.length; i++) {
+    const current = ornaments[i];
+    const next = ornaments[i + 1];
+
+    if (values[current] === undefined) return undefined;
+
+    if (values[next] > values[current]) {
+      total -= values[current];
+    } else {
+      total += values[current];
+    }
+  }
+
+  return total;
 }
