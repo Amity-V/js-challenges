@@ -51,6 +51,60 @@
  */
 
 function isRobotBack(moves) {
-  // Code here
-  return true;
+  const invertMap = {
+    U: "D",
+    D: "U",
+    L: "R",
+    R: "L",
+  };
+
+  const moveMap = {
+    U: { x: 0, y: 1 },
+    D: { x: 0, y: -1 },
+    L: { x: -1, y: 0 },
+    R: { x: 1, y: 0 },
+  };
+
+  const executed = new Set();
+  let x = 0,
+    y = 0;
+
+  for (let i = 0; i < moves.length; i += 1) {
+    let move = moves[i];
+
+    if (move === "*") {
+      i += 1;
+      move = moves[i];
+
+      for (let j = 0; j < 2; j += 1) {
+        x += moveMap[move].x;
+        y += moveMap[move].y;
+        executed.add(move);
+      }
+
+      continue;
+    }
+
+    if (move === "!") {
+      i += 1;
+      move = invertMap[moves[i]];
+    }
+
+    if (move === "?") {
+      i += 1;
+      const nextMove = moves[i];
+
+      if (executed.has(nextMove)) {
+        continue;
+      }
+
+      move = nextMove;
+    }
+
+    x += moveMap[move].x;
+    y += moveMap[move].y;
+    executed.add(move);
+  }
+
+  return (x === 0 && y === 0) || [x, y];
 }
