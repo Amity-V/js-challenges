@@ -37,6 +37,14 @@
  */
 
 function minMovesToStables(reindeer, stables) {
-  // Code here
-  return 0;
+  const sortedReindeer = [...reindeer].sort((a, b) => a - b);
+  const sortedStables = [...stables].sort((a, b) => a - b);
+
+  let result = 0;
+
+  for (let i = 0; i < stables.length; i += 1) {
+    result += Math.abs(sortedReindeer[i] - sortedStables[i]);
+  }
+
+  return result;
 }
