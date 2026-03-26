@@ -44,6 +44,30 @@
  */
 
 function drawTable(data) {
-  // Code here
-  return "";
+  const keys = Object.keys(data[0]);
+
+  const widths = keys.map((key) =>
+    Math.max(key.length, ...data.map((row) => String(row[key]).length)),
+  );
+
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const padRight = (str, width) => ` ${str}${" ".repeat(width - str.length)} `;
+
+  const separator = "+" + widths.map((w) => "-".repeat(w + 2)).join("+") + "+";
+
+  const header =
+    "|" +
+    keys.map((key, i) => padRight(capitalize(key), widths[i])).join("|") +
+    "|";
+
+  const body = data
+    .map(
+      (row) =>
+        "|" +
+        keys.map((key, i) => padRight(String(row[key]), widths[i])).join("|") +
+        "|",
+    )
+    .join("\n");
+
+  return [separator, header, separator, body, separator].join("\n");
 }
