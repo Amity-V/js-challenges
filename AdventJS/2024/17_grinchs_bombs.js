@@ -41,6 +41,32 @@
  */
 
 function detectBombs(grid) {
-  // Code here
-  return [];
+  const directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ];
+
+  const result = [];
+
+  for (let r = 0; r < grid.length; r += 1) {
+    const row = [];
+
+    for (let c = 0; c < grid[0].length; c += 1) {
+      const bombCount = directions.reduce((count, [dr, dc]) => {
+        return count + (grid[r + dr]?.[c + dc] ? 1 : 0);
+      }, 0);
+
+      row.push(bombCount);
+    }
+
+    result.push(row);
+  }
+
+  return result;
 }
