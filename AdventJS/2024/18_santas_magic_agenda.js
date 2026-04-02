@@ -33,6 +33,28 @@
  */
 
 function findInAgenda(agenda, phone) {
-  // Code here
-  return null;
+  const lines = agenda.trim().split("\n");
+  const matches = lines.filter((line) => line.includes(phone));
+
+  if (matches.length !== 1) return null;
+
+  const line = matches[0];
+  const nameMatch = line.match(/<([^>]+)>/);
+
+  if (!nameMatch) return null;
+
+  const name = nameMatch[1];
+  const phoneMatch = line.match(/\+\d{1,2}-\d{3}-\d{3}-\d{3}/);
+
+  if (!phoneMatch) return null;
+
+  const fullPhone = phoneMatch[0];
+
+  const address = line
+    .replace(nameMatch[0], "")
+    .replace(fullPhone, "")
+    .trim()
+    .replace(/\s+/g, " ");
+
+  return { name, address };
 }
