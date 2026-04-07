@@ -62,9 +62,24 @@
  */
 
 function fixGiftList(received, expected) {
-  // Code here
+  const receivedGifts = [...received];
+  const missing = {};
+  const extra = {};
+
+  for (const gift of expected) {
+    if (receivedGifts.includes(gift)) {
+      receivedGifts.splice(receivedGifts.indexOf(gift), 1);
+    } else {
+      missing[gift] = (missing[gift] ?? 0) + 1;
+    }
+  }
+
+  for (const gift of receivedGifts) {
+    extra[gift] = (extra[gift] ?? 0) + 1;
+  }
+
   return {
-    missing: {},
-    extra: {},
+    missing,
+    extra,
   };
 }
