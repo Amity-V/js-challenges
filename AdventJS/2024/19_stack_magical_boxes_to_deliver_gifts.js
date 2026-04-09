@@ -68,6 +68,43 @@
  */
 
 function distributeWeight(weight) {
-  // Code here
-  return "";
+  const boxSizes = [10, 5, 2, 1];
+  const boxCounts = { 10: 0, 5: 0, 2: 0, 1: 0 };
+  const boxWidths = { 1: 3, 2: 5, 5: 7, 10: 11 };
+  const boxRepresentations = {
+    1: [" _ ", "|_|"],
+    2: [" ___ ", "|___|"],
+    5: [" _____ ", "|     |", "|_____|"],
+    10: [" _________ ", "|         |", "|_________|"],
+  };
+
+  let remaining = weight;
+  for (const size of boxSizes) {
+    while (remaining >= size) {
+      boxCounts[size] += 1;
+      remaining -= size;
+    }
+
+    if (remaining === 0) break;
+  }
+
+  const lines = [];
+  let prevSize = null;
+
+  for (const size of boxSizes.reverse()) {
+    for (let i = 0; i < boxCounts[size]; i += 1) {
+      if (prevSize && prevSize < size) {
+        const extension = boxWidths[size] - boxWidths[prevSize] - 1;
+        lines[lines.length - 1] += "_".repeat(extension);
+      }
+
+      const isFirstBox = lines.length === 0;
+      const boxLines = boxRepresentations[size].slice(isFirstBox ? 0 : 1);
+      lines.push(boxLines.join("\n"));
+
+      prevSize = size;
+    }
+  }
+
+  return lines.join("\n");
 }
