@@ -46,6 +46,10 @@
  */
 
 function treeHeight(tree) {
-  // Code here
-  return 0;
+  if (tree === null) return 0;
+
+  const leftHeight = treeHeight(tree.left);
+  const rightHeight = treeHeight(tree.right);
+
+  return 1 + Math.max(leftHeight, rightHeight);
 }
