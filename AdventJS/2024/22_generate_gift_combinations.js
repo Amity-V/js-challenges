@@ -36,6 +36,24 @@
  */
 
 function generateGiftSets(gifts) {
-  // Code here
-  return [];
+  const result = [];
+
+  function backtrack(start, path, length) {
+    if (path.length === length) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let i = start; i < gifts.length; i += 1) {
+      path.push(gifts[i]);
+      backtrack(i + 1, path, length);
+      path.pop();
+    }
+  }
+
+  for (let size = 1; size <= gifts.length; size += 1) {
+    backtrack(0, [], size);
+  }
+
+  return result;
 }
