@@ -25,6 +25,15 @@
  */
 
 function findMissingNumbers(nums) {
-  // Code here
-  return [];
+  const numSet = new Set(nums);
+  const max = Math.max(...nums);
+  const result = [];
+
+  for (let n = 1; n < max; n++) {
+    if (!numSet.has(n)) {
+      result.push(n);
+    }
+  }
+
+  return result;
 }
