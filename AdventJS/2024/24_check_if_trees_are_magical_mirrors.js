@@ -71,6 +71,16 @@
  */
 
 function isTreesSynchronized(tree1, tree2) {
-  // Code here
-  return [false, ""];
+  function isMirror(a, b) {
+    if (!a && !b) return true;
+    if (!a || !b) return false;
+
+    return (
+      a.value === b.value &&
+      isMirror(a.left, b.right) &&
+      isMirror(a.right, b.left)
+    );
+  }
+
+  return [isMirror(tree1, tree2), tree1.value];
 }
